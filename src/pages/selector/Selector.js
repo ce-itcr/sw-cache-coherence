@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Header from "src/components/Header/Header";
-
+import { useHistory } from "react-router-dom";
 
 const Selector = () => {
   const protocols = ['MESI', 'MOESI']
   const [selectedOption, setSelectedOption] = useState(protocols[0]);
   const [lastCode, setLastCode] = useState(false);
+
+  let history = useHistory();
 
   const onChangeLastCode = () => {
     setLastCode(!lastCode);
@@ -13,7 +15,8 @@ const Selector = () => {
 
   const startProcess = async () => {
     console.log(selectedOption, lastCode)
-
+    localStorage.setItem('protocol', selectedOption);
+    history.push('/app/dashboard');
   }
 
   return (
@@ -41,7 +44,7 @@ const Selector = () => {
                     href=""
                     className="text-blueGray-600"
                     target="_blank"
-                    style={{color: "#271744"}}
+                    style={{ color: "#271744" }}
                   >
                     documentación correspondiente
                   </a>

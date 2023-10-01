@@ -2,7 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export default function Header({ title }) {
+export default function Header({ title, onResume }) {
+
+    const checkDashboard = () => {
+        if (title === '/app/dashboard') {
+            return (<li className="flex items-center">
+                <button
+                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    type="button"
+                    style={{backgroundColor: "#271744" }}
+                    onClick={onResume}
+                >
+                    <i className="fas fa-arrow-alt-circle-down"></i> Resumen
+                </button>
+            </li>)
+        }
+    }
     return (
         <>
             <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -14,14 +29,21 @@ export default function Header({ title }) {
                         >
                             <img
                                 className=""
-                                style={{width: '70%'}}
+                                style={{ width: '70%' }}
                                 src={require("../../assets/img/Logo.png")}
                                 alt="..."
                             />
                         </Link>
                     </div>
-                    <div style={{ fontWeight: "bold", color: '#271744' }}>{title}</div>
+                    <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+                        <li className="flex items-center">
+                            <div style={{ fontWeight: "bold", color: '#271744' }}>{title}</div>
+
+                        </li>
+                        {checkDashboard()}
+                    </ul>
                 </div>
+
             </nav>
         </>
     );

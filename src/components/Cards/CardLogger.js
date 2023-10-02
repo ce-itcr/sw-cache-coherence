@@ -17,8 +17,8 @@ export default function CardLogger({ protocol, logs
                         </div>
                     </div>
                     <div className="flex flex-wrap" style={{ paddingTop: 10 }}>
-                        <div style={{ height: 385, width: 545 }}>
-                            <div style={{height: 380, width: 545, backgroundColor: '#282c34', color: '#fff', padding: 20, borderRadius: 5, fontFamily: 'monospace', overflow: 'auto'}}>
+                        <div style={{ height: 395, width: 545 }}>
+                            <div style={{height: 385, width: 545, backgroundColor: '#282c34', color: '#fff', padding: 20, borderRadius: 5, fontFamily: 'monospace', overflow: 'auto'}}>
                                 {logs.map((log, index) => (
                                     <pre key={index} style={{margin: 0, whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: 1.5}}>
                                         <code>{log}</code>

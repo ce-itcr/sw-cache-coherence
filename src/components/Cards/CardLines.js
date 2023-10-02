@@ -17,7 +17,7 @@ export default function CardLines({
                         </div>
                     </div>
                     <div className="flex flex-wrap" style={{ paddingTop: 10 }}>
-                        <div className="bg-blueGray-200" style={{ height: 200, width: 545 }}>
+                        <div className="bg-blueGray-200" style={{ height: 250, width: 545 }}>
 
                         </div>
                     </div>

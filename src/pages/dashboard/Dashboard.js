@@ -55,7 +55,7 @@ const Dashboard = () => {
 
                         <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                             <div className="pt-32 sm:pt-0">
-                                <div style={{ paddingTop: 60, paddingBottom: 20 }}>
+                                <div style={{ paddingTop: 60, paddingBottom: 5 }}>
                                     <CardStats
                                         statSubtitle=""
                                         statTitle="PE#1"
@@ -66,12 +66,13 @@ const Dashboard = () => {
                                             { key: 'S', value: '01110' },
                                             { key: 'I', value: '10010' }
                                         ]}
+                                        status="Executing INC"
                                     />
                                 </div>
-                                <div style={{ paddingBottom: 20 }}>
+                                <div style={{ paddingBottom: 5 }}>
                                     <CardStats
                                         statSubtitle=""
-                                        statTitle="PE#1"
+                                        statTitle="PE#2"
                                         code={['WRITE 4', 'READ 12', 'WIRTE 3', 'READ 10', 'INC']}
                                         lines={[
                                             { key: 'I', value: '00010' },
@@ -79,12 +80,13 @@ const Dashboard = () => {
                                             { key: 'I', value: '01110' },
                                             { key: 'S', value: '10010' }
                                         ]}
+                                        status="Waiting for a response from CC"
                                     />
                                 </div>
                                 <div>
                                     <CardStats
                                         statSubtitle=""
-                                        statTitle="PE#1"
+                                        statTitle="PE#3"
                                         code={['WRITE 3', 'READ 2', 'READ 12', 'INC']}
                                         lines={[
                                             { key: 'S', value: '00010' },
@@ -92,6 +94,7 @@ const Dashboard = () => {
                                             { key: 'I', value: '01110' },
                                             { key: 'I', value: '10010' }
                                         ]}
+                                        status="Executing INC"
                                     />
                                 </div>
 

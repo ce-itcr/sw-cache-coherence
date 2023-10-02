@@ -6,7 +6,8 @@ export default function CardStats({
   stepAction,
   playAction,
   code,
-  lines
+  lines,
+  status
 }) {
   return (
     <>
@@ -65,7 +66,7 @@ export default function CardStats({
                 Lineas de caché
               </label>
               <div className="bg-blueGray-200" style={{ height: 150, width: 300 }}>
-                <div className="flex flex-wrap" style={{ justifyContent: 'center', justifySelf: 'center', paddingTop: 8}}>
+                <div className="flex flex-wrap" style={{ justifyContent: 'center', justifySelf: 'center', paddingTop: 8 }}>
                   <span style={{ padding: 2, }}>
                     {lines.map((line) =>
                       <div className="flex flex-wrap">
@@ -87,6 +88,17 @@ export default function CardStats({
 
             </div>
           </div>
+          <p className="text-sm " style={{paddingTop: 10}}>
+            <span className={" mr-2"}>
+              <i
+                className={
+                  "fas fa-arrow-right"
+                }
+              ></i>{" "}
+              Estado:
+            </span>
+            <span className="whitespace-nowrap" style={{color: '#40B714', fontWeight: 'bold'}}>{status}</span>
+          </p>
 
 
         </div>

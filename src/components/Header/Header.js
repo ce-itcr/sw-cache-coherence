@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 
-export default function Header({ title, onResume }) {
+export default function Header({ title, onResume, onClose, onDownload }) {
 
     const checkDashboard = () => {
         if (title === '/app/dashboard') {
@@ -10,7 +10,7 @@ export default function Header({ title, onResume }) {
                 <button
                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                     type="button"
-                    style={{backgroundColor: "#271744" }}
+                    style={{ backgroundColor: "#271744" }}
                     onClick={onResume}
                 >
                     <i className="fas fa-arrow-alt-circle-down"></i> Resumen
@@ -18,6 +18,31 @@ export default function Header({ title, onResume }) {
             </li>)
         }
     }
+
+    const checkSummary = () => {
+        if (title === '/app/summary') {
+            return (<><li className="flex items-center">
+                <button
+                    className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                    type="button"
+                    style={{ backgroundColor: "#271744" }}
+                    onClick={onClose}
+                >
+                    <i className="fas fa-arrow-alt-circle-down"></i> Descargar
+                </button>
+            </li><li className="flex items-center">
+                    <button
+                        className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
+                        type="button"
+                        style={{ backgroundColor: "#271744" }}
+                        onClick={onClose}
+                    >
+                        <i className="fas fa-arrow-alt-circle-down"></i> Cerrar
+                    </button>
+                </li></>)
+        }
+    }
+
     return (
         <>
             <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -41,6 +66,7 @@ export default function Header({ title, onResume }) {
 
                         </li>
                         {checkDashboard()}
+                        {checkSummary()}
                     </ul>
                 </div>
 

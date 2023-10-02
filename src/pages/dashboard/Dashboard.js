@@ -1,4 +1,3 @@
-import { Typography, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CardLines from "src/components/Cards/CardLines";
 import CardLogger from "src/components/Cards/CardLogger";

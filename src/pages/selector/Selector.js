@@ -46,7 +46,7 @@ const Selector = () => {
                     target="_blank"
                     style={{ color: "#271744" }}
                   >
-                    documentación correspondiente
+                    documentación
                   </a>
                   .
                 </p>

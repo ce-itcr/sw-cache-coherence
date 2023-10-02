@@ -13,7 +13,7 @@ export default function Header({ title, onResume, onClose, onDownload }) {
                     style={{ backgroundColor: "#271744" }}
                     onClick={onResume}
                 >
-                    <i className="fas fa-arrow-alt-circle-down"></i> Resumen
+                    <i className="fas fa-chart-simple"></i> Resumen
                 </button>
             </li>)
         }
@@ -37,7 +37,7 @@ export default function Header({ title, onResume, onClose, onDownload }) {
                         style={{ backgroundColor: "#271744" }}
                         onClick={onClose}
                     >
-                        <i className="fas fa-arrow-alt-circle-down"></i> Cerrar
+                        <i className="fas fa-close"></i> Cerrar
                     </button>
                 </li></>)
         }

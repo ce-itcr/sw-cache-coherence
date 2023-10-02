@@ -12,7 +12,7 @@ export default function CardLines({
                                 CacheSync
                             </h5>
                             <span className="font-semibold text-xl text-blueGray-700">
-                                Lineas de Memoria
+                                Memoria
                             </span>
                         </div>
                     </div>

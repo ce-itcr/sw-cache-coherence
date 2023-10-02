@@ -3,10 +3,10 @@ import React from "react";
 export default function CardStats({
   statSubtitle,
   statTitle,
-  statIconColor,
   stepAction,
   playAction,
-  code
+  code,
+  lines
 }) {
   return (
     <>
@@ -22,52 +22,67 @@ export default function CardStats({
               </span>
             </div>
             <div className="relative w-auto pl-4 flex-initial">
-              <div
-                className={
-                  "text-white p-3 text-center inline-flex items-center justify-center w-16 h-10 shadow-lg rounded-full " +
-                  statIconColor
-                }
-                onClick={stepAction}
-                style={{ marginRight: 10 }}
+              <button
+                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                style={{ backgroundColor: "#271744" }}
               >
+                <i className="fas fa-forward-step text-white mr-4"></i>
                 Step
-              </div>
-              <div
-                className={
-                  "text-white p-3 text-center inline-flex items-center justify-center w-16 h-10 shadow-lg rounded-full " +
-                  statIconColor
-                }
-                onClick={playAction}
+              </button>
+              <button
+                className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                style={{ backgroundColor: "#271744" }}
               >
-                Play
-              </div>
+                <i className="fas fa-play text-white mr-4"></i>
+                Start
+              </button>
+
             </div>
 
           </div>
-          <div className="flex flex-wrap" style={{paddingTop: 10}}>
-            <div className=""  style={{marginLeft: 0}}>
+          <div className="flex flex-wrap" style={{ paddingTop: 10 }}>
+            <div className="" >
               <label
                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="full-name"
               >
                 Código aleatorio
-              </label>            
-              <div className="bg-blueGray-200" style={{ height: 150, width: 190 }}>
-                <span style={{ padding: 20, }}>
+              </label>
+              <div style={{ height: 150, width: 190, backgroundColor: '#282c34', color: '#fff', padding: 20, borderRadius: 5, fontFamily: 'monospace', overflow: 'auto' }}>
+                <span>
                   {code.map((line) => <p>{line}</p>)}
                 </span>
               </div>
 
             </div>
-            <div className="" style={{marginLeft: 60}}>
+            <div className="" style={{ marginLeft: 60 }}>
               <label
                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="full-name"
               >
                 Lineas de caché
-              </label>            
+              </label>
               <div className="bg-blueGray-200" style={{ height: 150, width: 300 }}>
-                
+                <div className="flex flex-wrap" style={{ justifyContent: 'center', justifySelf: 'center', paddingTop: 8}}>
+                  <span style={{ padding: 2, }}>
+                    {lines.map((line) =>
+                      <div className="flex flex-wrap">
+                        <p style={{ borderColor: '#000', border: 'solid', borderWidth: 0.5, width: 20, height: 32, paddingLeft: 5 }}>{line.key} </p>
+                        <p style={{ borderColor: '#000', border: 'solid', borderWidth: 0.5, width: 120, paddingLeft: 5 }}>{line.value}</p>
+                      </div>
+                    )}
+                  </span>
+                  <span style={{ padding: 2, }}>
+                    {lines.map((line) =>
+                      <div className="flex flex-wrap">
+                        <p style={{ borderColor: '#000', border: 'solid', borderWidth: 0.5, width: 20, height: 32, paddingLeft: 5 }}>{line.key} </p>
+                        <p style={{ borderColor: '#000', border: 'solid', borderWidth: 0.5, width: 120, paddingLeft: 5 }}>{line.value}</p>
+                      </div>
+                    )}
+                  </span>
+                </div>
               </div>
 
             </div>
@@ -75,7 +90,7 @@ export default function CardStats({
 
 
         </div>
-        
+
       </div>
     </>
   );

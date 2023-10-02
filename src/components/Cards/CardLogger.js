@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CardLogger({ protocol
+export default function CardLogger({ protocol, logs
 }) {
     return (
         <>
@@ -9,7 +9,7 @@ export default function CardLogger({ protocol
                     <div className="flex flex-wrap">
                         <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
                             <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                                Protocolo actual: <b>{protocol}</b>
+                                Protocolo actual: <b style={{color: '#FF6100'}}>{protocol}</b>
                             </h5>
                             <span className="font-semibold text-xl text-blueGray-700">
                                 Logger de Transacciones
@@ -17,8 +17,14 @@ export default function CardLogger({ protocol
                         </div>
                     </div>
                     <div className="flex flex-wrap" style={{ paddingTop: 10 }}>
-                        <div className="bg-blueGray-200" style={{ height: 420, width: 545 }}>
-
+                        <div style={{ height: 385, width: 545 }}>
+                            <div style={{height: 380, width: 545, backgroundColor: '#282c34', color: '#fff', padding: 20, borderRadius: 5, fontFamily: 'monospace', overflow: 'auto'}}>
+                                {logs.map((log, index) => (
+                                    <pre key={index} style={{margin: 0, whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: 1.5}}>
+                                        <code>{log}</code>
+                                    </pre>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

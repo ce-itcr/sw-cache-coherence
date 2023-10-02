@@ -35,7 +35,7 @@ const Selector = () => {
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                   Cache Sync tiene como objetivo analizar el rendimiento de los modelos de coherencia de caché MOESI y MESI en diversas situaciones,
-                  centrándose en instrucciones particulares.
+                  centrándose en instrucciones particulares (READ, WRITE, INC).
                 </p>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                   Para obtener información detallada sobre estas especificaciones,
@@ -100,7 +100,7 @@ const Selector = () => {
                               onChange={onChangeLastCode}
                             />
                             <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                              Usar código anterior
+                              Usar código generado anteriormente
                             </span>
                           </div>
 
@@ -112,7 +112,7 @@ const Selector = () => {
                               style={{ backgroundColor: "#271744" }}
                               onClick={startProcess}
                             >
-                              Iniciar Proceso
+                              Seleccionar
                             </button>
                           </div>
                         </div>

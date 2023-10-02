@@ -9,7 +9,30 @@ import { useHistory } from "react-router-dom";
 const Dashboard = () => {
 
     const [currentProtocol, setCurrentProtocol] = useState('');
-    
+    const logs = [
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        'console.log("Mensaje 1");',
+        
+      ];
+
     let history = useHistory();
 
     useEffect(() => {
@@ -22,7 +45,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <Header title={'/app/dashboard'} onResume={checkOnResume}/>
+            <Header title={'/app/dashboard'} onResume={checkOnResume} />
 
             <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
 
@@ -32,28 +55,43 @@ const Dashboard = () => {
 
                         <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                             <div className="pt-32 sm:pt-0">
-                                <div style={{paddingTop: 60,paddingBottom: 20}}>
+                                <div style={{ paddingTop: 60, paddingBottom: 20 }}>
                                     <CardStats
                                         statSubtitle=""
                                         statTitle="PE#1"
-                                        statIconColor="bg-orange-500"
-                                        code={['asdasd', 'asdasdasd']}
+                                        code={['WRITE 4', 'READ 12', 'WIRTE 3', 'READ 10', 'INC', 'READ 12', 'WIRTE 3', 'READ 10', 'INC']}
+                                        lines={[
+                                            { key: 'I', value: '00010' },
+                                            { key: 'S', value: '01010' },
+                                            { key: 'S', value: '01110' },
+                                            { key: 'I', value: '10010' }
+                                        ]}
                                     />
                                 </div>
-                                <div style={{paddingBottom: 20}}>
+                                <div style={{ paddingBottom: 20 }}>
                                     <CardStats
                                         statSubtitle=""
                                         statTitle="PE#1"
-                                        statIconColor="bg-orange-500"
-                                        code={['asdasd', 'asdasdasd']}
+                                        code={['WRITE 4', 'READ 12', 'WIRTE 3', 'READ 10', 'INC']}
+                                        lines={[
+                                            { key: 'I', value: '00010' },
+                                            { key: 'S', value: '01010' },
+                                            { key: 'I', value: '01110' },
+                                            { key: 'S', value: '10010' }
+                                        ]}
                                     />
                                 </div>
                                 <div>
                                     <CardStats
                                         statSubtitle=""
                                         statTitle="PE#1"
-                                        statIconColor="bg-orange-500"
-                                        code={['asdasd', 'asdasdasd']}
+                                        code={['WRITE 3', 'READ 2', 'READ 12', 'INC']}
+                                        lines={[
+                                            { key: 'S', value: '00010' },
+                                            { key: 'S', value: '01010' },
+                                            { key: 'I', value: '01110' },
+                                            { key: 'I', value: '10010' }
+                                        ]}
                                     />
                                 </div>
 
@@ -62,17 +100,17 @@ const Dashboard = () => {
 
                         <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                             <div className="pt-32 sm:pt-0">
-                                <div style={{paddingTop: 60,paddingBottom: 20}}>
+                                <div style={{ paddingTop: 60, paddingBottom: 20 }}>
                                     <CardLines />
                                 </div>
                                 <div>
-                                    <CardLogger statIconColor="bg-orange-500" protocol={currentProtocol}/>
+                                    <CardLogger logs={logs} protocol={currentProtocol} />
                                 </div>
 
                             </div>
                         </div>
 
-                 
+
                     </div>
                 </div>
 

@@ -21,7 +21,8 @@ export default function Header({ title, onResume, onClose, onDownload }) {
 
     const checkSummary = () => {
         if (title === '/app/summary') {
-            return (<><li className="flex items-center">
+            return (<>
+            {/* <li className="flex items-center">
                 <button
                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                     type="button"
@@ -30,7 +31,8 @@ export default function Header({ title, onResume, onClose, onDownload }) {
                 >
                     <i className="fas fa-arrow-alt-circle-down"></i> Descargar
                 </button>
-            </li><li className="flex items-center">
+            </li> */}
+            <li className="flex items-center">
                     <button
                         className="bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150"
                         type="button"
@@ -49,7 +51,6 @@ export default function Header({ title, onResume, onClose, onDownload }) {
                 <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                         <Link
-                            to="/"
                             className="text-blueGray-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
                         >
                             <img

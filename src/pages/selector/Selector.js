@@ -1,13 +1,39 @@
 import React, { useState } from "react";
 import Header from "src/components/Header/Header";
 import { useHistory } from "react-router-dom";
+import Modal from "react-modal";
+import { Communication } from "src/common/communication";
+
+export const customStyles = {
+  content: {
+    backgroundColor: "#fff",
+    color: "#000",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 const Selector = () => {
   const protocols = ['MESI', 'MOESI']
   const [selectedOption, setSelectedOption] = useState(protocols[0]);
   const [lastCode, setLastCode] = useState(false);
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   let history = useHistory();
+  
+  let communication = new Communication();
 
   const onChangeLastCode = () => {
     setLastCode(!lastCode);
@@ -16,6 +42,7 @@ const Selector = () => {
   const startProcess = async () => {
     console.log(selectedOption, lastCode)
     localStorage.setItem('protocol', selectedOption);
+    const response = await communication.startProcess(selectedOption, lastCode);
     history.push('/app/dashboard');
   }
 
@@ -110,7 +137,7 @@ const Selector = () => {
                               className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                               type="button"
                               style={{ backgroundColor: "#271744" }}
-                              onClick={startProcess}
+                              onClick={openModal}
                             >
                               Seleccionar
                             </button>
@@ -126,6 +153,38 @@ const Selector = () => {
         </div>
 
       </section>
+      <Modal
+        isOpen={modalOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <div style={{ maxWidth: 400 }}>
+          <div style={{ fontWeight: 'bold', fontSize: 18, paddingBottom: 20, color: "#271744" }}>
+            Iniciar proceso de ejecución
+          </div>
+          <div style={{ paddingBottom: 30 }}>
+            ¿Está seguro que desea iniciar el proceso de ejecución para el protocolo <b style={{color: "#271744"}}>{selectedOption}</b>  y código anterior {lastCode ? '' : 'no'} seleccionado?
+          </div>
+          <div className="text-center mt-6">
+          <button
+              className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              style={{ borderColor: "#271744", borderWidth: 1, color: "#271744", backgroundColor: '#fff', width: 150 }}
+              onClick={closeModal}
+            >
+              Cancelar
+            </button>
+            <button
+              className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              style={{ borderColor: "#271744", borderWidth: 1,backgroundColor: "#271744", width: 150 }}
+              onClick={startProcess}
+            >
+              Iniciar
+            </button>
+          </div>
+        </div>
+      </Modal>
 
     </>
   )

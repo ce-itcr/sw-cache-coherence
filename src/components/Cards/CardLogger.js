@@ -21,7 +21,7 @@ export default function CardLogger({ protocol, logs
                             <div style={{height: 385, width: 545, backgroundColor: '#282c34', color: '#fff', padding: 20, borderRadius: 5, fontFamily: 'monospace', overflow: 'auto'}}>
                                 {logs.map((log, index) => (
                                     <pre key={index} style={{margin: 0, whiteSpace: 'pre-wrap', wordWrap: 'break-word', lineHeight: 1.5}}>
-                                        <code>{log}</code>
+                                        <code>{log.Log}</code>
                                     </pre>
                                 ))}
                             </div>

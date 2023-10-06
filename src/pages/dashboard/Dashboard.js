@@ -6,6 +6,9 @@ import Header from "src/components/Header/Header";
 import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
 import data from '../../common/info.json';
+import { sleep } from "src/utils/Sleep";
+import { getDashboardData, postRequest } from "src/common/communication";
+import { useInterval } from "src/utils/useInterval";
 
 
 export const customStyles = {
@@ -44,6 +47,9 @@ const Dashboard = () => {
     const [status2, setStatus2] = useState('');
 
 
+    const [dashboardData, setDashboardData] = useState({})
+
+
     let history = useHistory();
 
     const [modalOpen, setModalOpen] = useState(false);
@@ -55,59 +61,87 @@ const Dashboard = () => {
         setModalOpen(false);
     };
 
+    const getData = () => {
+
+        getDashboardData('').then((data) => {
+            setDashboardData(data)
+
+            setICLogs(data.IC.Logs)
+            setMemory(data.MM.Blocks)
+
+            const currentCode0 = data.PEs.find(pe => pe.ID === 0)?.Instructions;
+            const currentRegister0 = data.PEs.find(pe => pe.ID === 0)?.Register;
+            const currentStatus0 = data.PEs.find(pe => pe.ID === 0)?.Status;
+            const currentLines0 = data.CCs.find(cc => cc.ID === 0)?.Cache;
+            setCode0(currentCode0)
+            setRegister0(currentRegister0)
+            setStatus0(currentStatus0)
+            setLines0(currentLines0)
+
+            const currentCode1 = data.PEs.find(pe => pe.ID === 1)?.Instructions;
+            const currentRegister1 = data.PEs.find(pe => pe.ID === 1)?.Register;
+            const currentStatus1 = data.PEs.find(pe => pe.ID === 1)?.Status;
+            const currentLines1 = data.CCs.find(cc => cc.ID === 1)?.Cache;
+            setCode1(currentCode1)
+            setRegister1(currentRegister1)
+            setStatus1(currentStatus1)
+            setLines1(currentLines1)
+
+            const currentCode2 = data.PEs.find(pe => pe.ID === 2)?.Instructions;
+            const currentRegister2 = data.PEs.find(pe => pe.ID === 2)?.Register;
+            const currentStatus2 = data.PEs.find(pe => pe.ID === 2)?.Status;
+            const currentLines2 = data.CCs.find(cc => cc.ID === 2)?.Cache;
+            setCode2(currentCode2)
+            setRegister2(currentRegister2)
+            setStatus2(currentStatus2)
+            setLines2(currentLines2)
+
+        })
+
+    }
+
     useEffect(() => {
+
         setCurrentProtocol(localStorage.getItem('protocol'));
-        setICLogs(data.IC.Logs)
-        setMemory(data.MM.Blocks)
 
-        const currentCode0 = data.PEs.find(pe => pe.ID === 0)?.Instructions;
-        const currentRegister0 = data.PEs.find(pe => pe.ID === 0)?.Register;
-        const currentStatus0 = data.PEs.find(pe => pe.ID === 0)?.Status;
-        const currentLines0 = data.CCs.find(cc => cc.ID === 0)?.Cache;
-        setCode0(currentCode0)
-        setRegister0(currentRegister0)
-        setStatus0(currentStatus0)
-        setLines0(currentLines0)
-
-        const currentCode1 = data.PEs.find(pe => pe.ID === 1)?.Instructions;
-        const currentRegister1 = data.PEs.find(pe => pe.ID === 1)?.Register;
-        const currentStatus1 = data.PEs.find(pe => pe.ID === 1)?.Status;
-        const currentLines1 = data.CCs.find(cc => cc.ID === 1)?.Cache;
-        setCode1(currentCode1)
-        setRegister1(currentRegister1)
-        setStatus1(currentStatus1)
-        setLines1(currentLines1)
-
-        const currentCode2 = data.PEs.find(pe => pe.ID === 2)?.Instructions;
-        const currentRegister2 = data.PEs.find(pe => pe.ID === 2)?.Register;
-        const currentStatus2 = data.PEs.find(pe => pe.ID === 2)?.Status;
-        const currentLines2 = data.CCs.find(cc => cc.ID === 2)?.Cache;
-        setCode2(currentCode2)
-        setRegister2(currentRegister2)
-        setStatus2(currentStatus2)
-        setLines2(currentLines2)
-
-
-
+        getData();
 
     }, [])
 
     const checkOnResume = async () => {
-        // const response = await communication.startProcess(selectedOption, lastCode);
         history.push('/app/summary');
 
+        postRequest('setlj', {
+            "action": "close"
+        }).then(() => {
+            history.push('/app/summary');
+        })
+
     }
+
+    useInterval(() => {
+        getData();
+    }, 500)
 
     const onStep = async (pe) => {
         switch (pe) {
             case 1:
-                console.log('actions on pe1')
+                postRequest('setaction', {
+                    "action": "step",
+                    "number": "0"
+                })
                 break;
             case 2:
-                console.log('actions on pe2')
+                postRequest('setaction', {
+                    "action": "step",
+                    "number": "1"
+                })
                 break;
             case 3:
-                console.log('actions on pe3')
+                postRequest('setaction', {
+                    "action": "step",
+                    "number": "2"
+                })
                 break;
             default:
                 break;
@@ -115,9 +149,11 @@ const Dashboard = () => {
     }
 
     const onStart = async () => {
-        console.log('actions on start')
+        postRequest('setaction', {
+            "action": "all",
+            "number": "1"
+        })
     }
-
 
     // useEffect(() => {
     //     const intervalId = setInterval(() => {
@@ -183,7 +219,7 @@ const Dashboard = () => {
                         <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
                             <div className="pt-32 sm:pt-0">
                                 <div style={{ paddingTop: 60, paddingBottom: 20 }}>
-                                    <CardLines onClick={() => { onStart }} data={memory}/>
+                                    <CardLines onClick={ onStart } data={memory} />
                                 </div>
                                 <div>
                                     <CardLogger logs={ICLogs} protocol={currentProtocol} />

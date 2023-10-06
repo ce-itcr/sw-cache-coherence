@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "src/components/Header/Header";
 import { useHistory } from "react-router-dom";
 import Modal from "react-modal";
-import { Communication } from "src/common/communication";
+import { postRequest } from "src/common/communication";
 
 export const customStyles = {
   content: {
@@ -33,8 +33,6 @@ const Selector = () => {
 
   let history = useHistory();
   
-  let communication = new Communication();
-
   const onChangeLastCode = () => {
     setLastCode(!lastCode);
   }
@@ -42,8 +40,9 @@ const Selector = () => {
   const startProcess = async () => {
     console.log(selectedOption, lastCode)
     localStorage.setItem('protocol', selectedOption);
-    const response = await communication.startProcess(selectedOption, lastCode);
-    history.push('/app/dashboard');
+    postRequest('setinitialize', {"type":selectedOption, "lastCode": lastCode}).then((data) => {
+      history.push('/app/dashboard');
+    })
   }
 
   return (

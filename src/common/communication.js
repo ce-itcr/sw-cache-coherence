@@ -1,25 +1,78 @@
 import axios from "axios";
 
-export const apiUrl = 'https://jsonplaceholder.typicode.com'
-export class Communication {
+export const url = "http://localhost:8080/";
+
+const postRequest = async (
+    action, data
+) => {
+
+    try {
+        const res = await axios({
+            method: 'post',
+            baseURL: url + action,
+            url: url + action,
+            headers: { "Content-Type": "application/json" },
+            data: data,
+        })
 
 
-    async startProcess(
-        type,
-        lastCode
-    ) {
-        const requestUrl = apiUrl + "/posts";
-        const processData = {
-            type: type,
-            lastCode: lastCode,
-        };
-        const headers = { "Content-Type": "application/json" };
-        const response = await axios
-            .post(requestUrl, processData, headers)
-            .catch((error) => {
-                return error.response;
-            });
-        console.log("🚀 ~ file: communication.js:22 ~ Communication ~ response:", response)
-        return response.data;
+        return res.data
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response)
+        } else {
+            console.log(error.message)
+        }
     }
 }
+
+const getDashboardData = async (
+    params = {}
+) => {
+
+    try {
+        const res = await axios({
+            method: 'get',
+            baseURL: url + "about",
+            url: url + "about",
+            headers: { "Content-Type": "application/json" },
+            params: params,
+        })
+
+
+        return res.data
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response)
+        } else {
+            console.log(error.message)
+        }
+    }
+}
+
+const getMetricsData = async (
+    params = {}
+) => {
+
+    try {
+        const res = await axios({
+            method: 'get',
+            baseURL: url + "aboutmetrics",
+            url: url + "aboutmetrics",
+            headers: { "Content-Type": "application/json" },
+            params: params,
+        })
+
+
+        return res.data
+    } catch (error) {
+        if (error.response) {
+            console.log(error.response)
+        } else {
+            console.log(error.message)
+        }
+    }
+}
+
+
+export { postRequest, getDashboardData, getMetricsData}

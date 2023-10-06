@@ -12,7 +12,7 @@ export default function CardLogger({ protocol, logs
                                 Protocolo actual: <b style={{color: '#FF6100'}}>{protocol}</b>
                             </h5>
                             <span className="font-semibold text-xl text-blueGray-700">
-                                Logger de Transacciones
+                                Logger de Transacciones del Bus
                             </span>
                         </div>
                     </div>

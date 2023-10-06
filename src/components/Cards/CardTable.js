@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function CardTable({ color }) {
+export default function CardTable({ color, transactions }) {
+  console.log(transactions)
+
   return (
     <>
       <div
@@ -37,7 +39,7 @@ export default function CardTable({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Número
+                  Orden
                 </th>
                 <th
                   className={
@@ -49,30 +51,24 @@ export default function CardTable({ color }) {
                 >
                   Transacción
                 </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
-                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
-                  }
-                >
-                  Tipo
-                </th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                    1
-                </th>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                  ASDASD
-                </td>
-                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                   INV
-                </td>
-              </tr>
+              {transactions.map((item, index) => {
+                return (
+                  <tr>
+                    <th className="border-t-0  align-middle border-l-0 border-r-0 text-xs whitespace-nowrap text-left" style={{ paddingLeft: 40 }}>
+                      {item.Order}
+                    </th>
+                    <td className="border-t-0 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap " style={{ paddingLeft: 20 }}>
+                      <i className="fas fa-arrow-right text-emerald-500 mr-4"></i>
+                      {item.Transaction}
+                    </td>
+                  </tr>
+
+
+                )
+              })}
             </tbody>
           </table>
         </div>
